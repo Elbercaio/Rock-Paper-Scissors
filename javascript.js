@@ -3,38 +3,61 @@ function computerPlay() {
   return options[Math.floor(Math.random() * options.length)];
 }
 
-function gameResult(playerSelection, computerSelection) {
+function playRound(playerSelection, computerSelection) {
   playerSelection = playerSelection.toLowerCase();
   computerSelection = computerSelection.toLowerCase();
   if (playerSelection === "rock") {
     if (computerSelection === "paper") {
-      return "You Lose! Paper beats Rock";
+      return "You Lose the Round! Paper beats Rock";
     } else if (computerSelection === "scissors") {
-      return "You Win! Rock beats Scissors";
+      return "You Win the Round! Rock beats Scissors";
     } else {
-      return "Draw! Try Again";
+      return "Draw! Better Luck Next Round";
     }
   } else if (playerSelection === "paper") {
     if (computerSelection === "paper") {
-      return "Draw! Try Again";
+      return "Draw! Better Luck Next Round";
     } else if (computerSelection === "scissors") {
-      return "You Lose! Scissors beats Paper";
+      return "You Lose the Round! Scissors beats Paper";
     } else {
-      return "You Win! Paper beats Rock";
+      return "You Win the Round! Paper beats Rock";
     }
   } else if (playerSelection === "scissors") {
     if (computerSelection === "paper") {
-      return "You Win! Scissors beats Paper";
+      return "You Win the Round! Scissors beats Paper";
     } else if (computerSelection === "scissors") {
-      return "Draw! Try Again";
+      return "Draw! Better Luck Next Round";
     } else {
-      return "You Lose! Rock beats Scissors";
+      return "You Lose the Round! Rock beats Scissors";
     }
   } else {
     return "Choose a valid option!";
   }
 }
 
-const playerSelection = "rock";
-const computerSelection = computerPlay();
-console.log(playRound(playerSelection, computerSelection));
+function game() {
+  let playerScore = 0;
+  let computerScore = 0;
+  for (let i = 0; i < 5; i++) {
+    let playerSelection = prompt("Please enter your answer: ");
+    round = playRound(playerSelection, computerPlay());
+    console.log(round);
+    if (round.includes("Win")) {
+      playerScore++;
+    } else if (round.includes("Lose")) {
+      computerScore++;
+    }
+    console.log(
+      `Player: ${playerScore} x Computer: ${computerScore}`
+    );
+  }
+  if (playerScore > computerScore) {
+    console.log("You won against the machine!");
+  } else if (playerScore < computerScore) {
+    console.log("You lost against the machine. Shame!");
+  } else {
+    console.log("An Overall Draw, unlucky");
+  }
+}
+
+game()
