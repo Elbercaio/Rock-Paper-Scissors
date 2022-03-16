@@ -20,6 +20,7 @@ button {
   flex-direction: column;
   align-items: center;
   margin-bottom: 4rem;
+  color: #8a8199;
 }
 
 .options {
